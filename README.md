@@ -175,6 +175,60 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   
   ## -버스시간표
   
+  1.RetrofitManager
+  Retrofit은 안드로이드 애플리케이션에서 통신 기능에 사용하는 코드를 사용하기 쉽게 만들어 놓은 라이브러리이다.
+  데이터를 보다 쉽게 가져오고 업로드 할 수 있게 한다.
+  먼저 ApiUrl에 api 주소를 입력한다.
+  Retrofit에 초기 생성문을 작성해 하나의 변수로 만들어 api 주소를 불러 올 수 있게 한다.
+  
+![image](https://user-images.githubusercontent.com/80312446/121250816-20e4e280-c8e1-11eb-895a-e2dff0196c77.png)
+
+  2.Service
+  RetrofitService interface를 작성한다.
+  GET 타입으로 각각의 Query에 정보(url)를 입력한다.
+  Header는 보안을 위해 Query대신 사용했다.
+  
+  ![image](https://user-images.githubusercontent.com/80312446/121250977-52f64480-c8e1-11eb-9c4a-7af416024f4d.png)
+
+  3.BusMainActivity
+  api를 사용하기 위해서 URLDecode를 사용해야 한다. 이를 위해서는 인증이 필요하지만 공공데이터포털의 인증이 이루어지지 않았고,
+  문의를 남겨보았지만 답변이 오지 않았다.
+  하여 loadRealBusInfo 사용 대신 loadPostmanBusInfo를 사용했다.
+  그리고 getPostmanBusInfo의 serviceKey를 받는다.
+  busStopNumber로 검색하기 버튼을 클릭하면 text의 값을 확인해준다.
+  text가 비었으면 정보를 바르게 입력하도록 출력하고 정보가 있다면 해당 정보의 api를 불러온다.
+  city코드는 천안에 해당하는 25를 입력했다.
+  서버에서 반환해준 callback으로 interface를 object형식으로 override 받는다.
+  onResponse와 onFailure를 이용해 올바른 정보출력 형식인지 여부를 판단한다.
+  response.body가 response 값을 받는 것인데 
+  
+![image](https://user-images.githubusercontent.com/80312446/121251442-d57f0400-c8e1-11eb-9c84-3c765a49ed76.png)
+![image](https://user-images.githubusercontent.com/80312446/121251485-e3cd2000-c8e1-11eb-95cd-9f66febf8991.png)
+
+  4.Bus로 형을 변환해준다.
+  그러면 data를 타게 되고 Array 형식으로
+  
+  ![image](https://user-images.githubusercontent.com/80312446/121251585-019a8500-c8e2-11eb-98c4-9198876f7fb1.png)
+
+  5.BusModel의 값들을 불러온다.
+  Model에서 정류소 값을 받았을 경우 출력되는 차량 번호, 남은 구간, 남은 시간을 출력해준다.
+  그 다음은 intent를 이용하여 Busdetail을 불러온다.
+  startActivity에서 BusDetailActivity로 넘어간다.
+  
+  ![image](https://user-images.githubusercontent.com/80312446/121251682-1c6cf980-c8e2-11eb-8784-2adc93c113c3.png)
+
+  6.BusDetailActivity
+  BusDetailActivity로 넘어오면 getSerializableExtra로 정보를 받아온다.
+  lazy(지연초기화)를 사용하여 데이터 호출시에 데이터를 즉시 초기화 시켜서 온다.
+  그 후 RecyclerView로 넘긴다.
+  
+  ![image](https://user-images.githubusercontent.com/80312446/121251756-2f7fc980-c8e2-11eb-9e08-cfef3734a993.png)
+
+  7.RecyclerView
+  RecyclerView를 이용하여 데이터를 효율적으로 표시 할 수 있도록 한다.
+
+![image](https://user-images.githubusercontent.com/80312446/121251836-44f4f380-c8e2-11eb-8fd8-0b99744ccdb5.png)
+  
   ## -택시 모집
   
 # 다른 어플과 SMUtime의 차이점
