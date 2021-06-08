@@ -19,12 +19,27 @@
 
   -회원가입/로그인
   
-  ---
+  -메인화면
+  메인화면의 주요기능은 페이지 이동이다. 
+  Fragment를 이용하여 bottomNavi를 제작하여 구성하려고 하였으나 4번째 화면을 수업시간에 배운 내용을 응용하여 CardView로 교통부분의 페이지를 구성하였는데,
+  이 부분과 충돌이 일어나 이를 해결하지 못하고 버튼을 이용하여 다른 화면으로 넘어 가도록 구성하였다. 
+  
+  ![image](https://user-images.githubusercontent.com/80017979/121243436-ac0daa80-c8d8-11eb-94cd-65a55e6a1212.png)
+  
+  또한 DrawerListener를 사용하여 모든 기능으로 연결될 수 있도록 버튼을 넣어 이동의 편리함을 추가하였다.  
+  
+  ![image](https://user-images.githubusercontent.com/80017979/121243464-b3cd4f00-c8d8-11eb-9a72-d8d410f54afd.png)
+  ![image](https://user-images.githubusercontent.com/80017979/121243473-b62fa900-c8d8-11eb-8d37-3c8650e5b33a.png)
+  
+  뿐만 아니라 상명대학교 학생들의 편리함을 위해 제작된 만큼 학생들이 가장 많이 사용하는 학교 홈페이지, e-campus, 홈페이지 중에서도 공지사항의 url을 버튼에 intent로 연결하여 학교와의 정보공유를 쉽게 할 수 있도록 하였다.
+  
+  ![image](https://user-images.githubusercontent.com/80017979/121243561-cd6e9680-c8d8-11eb-86f9-ce3690db2da7.png)
+  
   -게시판(심우정)
   
     - 게시판의 세부 기능
     1.게시글 작성, 불러오기
-    2.게시글과 댓글 작성시 익명기능
+    2.시글과 댓글 작성시 익명기능
     3.게시글 사진 첨부 기능
     4.각 게시글 댓글 작성 기능
     5.각 게시글 좋아요 기능
