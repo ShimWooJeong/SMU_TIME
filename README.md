@@ -13,6 +13,7 @@
     - 택시 모집
 
 ## SMUtime 구성도
+
 ![화면 구성](https://user-images.githubusercontent.com/80017979/121213328-17478480-c8b9-11eb-8e22-ff5b9b712788.jpg)
 
 ## 기능 구현
