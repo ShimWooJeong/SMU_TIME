@@ -271,7 +271,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   ![1](https://user-images.githubusercontent.com/79950206/121289754-6f65a180-c920-11eb-9c18-aeb5ede8005e.jpg)
   ![3](https://user-images.githubusercontent.com/79950206/121289768-74c2ec00-c920-11eb-8761-998158c64dd7.jpg)
   
-  > ### 2. Course.class
+  > ### 2. Course.class (마혜준/박윤빈)
   
   상명대학교 강의를 불러오기 위해서 학교 홈페이지에 있는 강의를 불러와 내가 필요한 정보를 속성 courseID	courseYear	courseTerm	courseArea	courseMajor	courseGrade	courseTitle	courseCredit	courseDivide	courseProfessor	courseTime 으로 지정하고 정렬했다. 2번째 사진은 이렇게 정리한 csv 파일을 json 파일로 전환시켰다. json 파일을 통해서 안드로이드 스튜디오에서 불러오기 위해서이다. 3번째는 내가 만든 속성에 getter setter 메소드를 추가한 class이다.
 
