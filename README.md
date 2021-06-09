@@ -457,6 +457,6 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   https://github.com/mhjoon99/SMU-Time
   
 # 실행 영상
-  (유튜브 링크 걸꺼임)))
+  https://youtu.be/kbgkV3GHTAU
   - 제작: 양하은, 심우정
   
