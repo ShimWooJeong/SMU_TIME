@@ -147,6 +147,10 @@ OnClickListener 호출.
 
   ## - 메인화면(양하은)
   
+  ![image](https://user-images.githubusercontent.com/80022793/121352865-3d782d80-c968-11eb-974b-c68c7e643f94.png)
+  ![image](https://user-images.githubusercontent.com/80022793/121352881-41a44b00-c968-11eb-96ce-7ef54c602d25.png)
+  ![image](https://user-images.githubusercontent.com/80022793/121352847-39e4a680-c968-11eb-8f3e-cc7caf8dc7fb.png)
+
   메인화면의 주요기능은 페이지 이동이다. 
   Fragment를 이용하여 bottomNavi를 제작하여 구성하려고 하였으나 4번째 화면을 수업시간에 배운 내용을 응용하여 CardView로 교통부분의 페이지를 구성하였는데,
   이 부분과 충돌이 일어나 이를 해결하지 못하고 버튼을 이용하여 다른 화면으로 넘어 가도록 구성하였다. 
@@ -159,6 +163,11 @@ OnClickListener 호출.
   ![image](https://user-images.githubusercontent.com/80017979/121243473-b62fa900-c8d8-11eb-8d37-3c8650e5b33a.png)
   
   뿐만 아니라 상명대학교 학생들의 편리함을 위해 제작된 만큼 학생들이 가장 많이 사용하는 학교 홈페이지, e-campus, 홈페이지 중에서도 공지사항의 url을 버튼에 intent로 연결하여 학교와의 정보공유를 쉽게 할 수 있도록 하였다.
+  
+  
+  ![image](https://user-images.githubusercontent.com/80022793/121352921-4bc64980-c968-11eb-8d89-5dfe15f39846.png)
+  ![image](https://user-images.githubusercontent.com/80022793/121352944-51bc2a80-c968-11eb-86c7-3f287ec6dd85.png)
+  ![image](https://user-images.githubusercontent.com/80022793/121352960-54b71b00-c968-11eb-9c0e-6661642770f0.png)
   
   ![image](https://user-images.githubusercontent.com/80017979/121243561-cd6e9680-c8d8-11eb-86f9-ce3690db2da7.png)
   
@@ -298,9 +307,20 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   ![10](https://user-images.githubusercontent.com/79950206/121300910-654c9e80-c932-11eb-92ad-9add3f15ba2e.jpg)
   ![11](https://user-images.githubusercontent.com/79950206/121300985-82816d00-c932-11eb-8f66-21a15a545067.jpg)
 
-  ## - 채팅(양하은)
+  ## - 친구목록/채팅(양하은)
+  
+  메인화면에서 친구목록 버튼을 눌러 이동하면 친구를 추가 할 수 있는 화면이 나온다. 그리고 목록에 추가된 친구를 누르면 해당 친구와의 채팅이 가능한 화면이 나온다
+  
+  <img width="740px" height="450px" alt="image" src="https://user-images.githubusercontent.com/80022793/121352999-5c76bf80-c968-11eb-800b-27d88e0e4375.png">
+  
+  ![image](https://user-images.githubusercontent.com/80022793/121353083-70babc80-c968-11eb-87e0-a9888f076c30.png)
+  ![image](https://user-images.githubusercontent.com/80022793/121353101-757f7080-c968-11eb-99a4-9430552fe496.png)
+  
+  ListView를 사용하여 구성하였고, 버튼에 이벤트를 넣어 닉네임을 추가할 수 있도록 하였으며 Adapter를 이용하여 불러오기를 하였다 
   
   채팅의 주요기능은 실시간으로 대화를 할 수 있다는 것이다. 
+  
+  ![image](https://user-images.githubusercontent.com/80022793/121353031-64366400-c968-11eb-8a17-7ed640994683.png)
   
   ![image](https://user-images.githubusercontent.com/80017979/121243122-4f11f480-c8d8-11eb-8e60-4117003bff26.png)
   ![image](https://user-images.githubusercontent.com/80017979/121243196-694bd280-c8d8-11eb-83a9-0bc1e3e1301b.png)
@@ -419,18 +439,16 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 # SMUtime의 차별점
   
   SMUtime은 다른 어플들과는 다르게 상명대학교 학생들만을 위한 어플이다. 따라서 상명대학교 학생들을 위한 차별화된 편의 기능을 제공하고 있다. 
-  
-  우선 회원가입에 필요한 이메일을 작성할 때 상명대학교 이메일을 사용해야만 가입할 수 있다. 
-  
-  SMUtime은 firebase를 이용한 기능들이 많이 사용되고 있다. firebase를 이용한 SMUtime만의 차별점은 실시간 채팅이다. 실시간 채팅으로 같은 학교에 다니는 사람들 끼리 서로 메세지를 주고 받고, 정보를 공유 할 수 있다. 이 과정에서 firebase에 채팅 내용을 저장하여 
-  
+  회원가입을 할 때 상명대학교 이메일을 사용해야만 가입할 수 있다. 
+  SMUtime은 firebase를 이용한 기능들이 많이 사용되고 있는데 firebase를 이용한 SMUtime만의 차별점은 첫번째로 실시간 채팅이다. 실시간 채팅으로 같은 학교에 다니는 사람들 끼리 서로 메세지를 주고 받고, 정보를 공유 할 수 있다. 
   두번째로 셔틀버스 시간표를 제공하고 있다. 학교에서 제공된 셔틀버스 시간을 이용하여 셔틀버스 출발까지 남은 시간을 알려준다. 
-  
   세번째로 상명대학교 근처에 있는 버스정류장에 대한 버스 도착정보를 제공하고 있다. 학교 주변에 있는 안서동보A, 상명대학교 정류장의 정류장 번호 또는 정류장 이름을 입력하면 버스들의 도착정보를 제공한다. 
+  네번째로 택시 모집 기능을 제공하고 있다. 택시 모집기능은 출발 장소, 도착 장소, 출발 시간 등을 올리면 그 정보를 확인하고 같이 택시를 타고 싶은 사람들이 모일 수 있도록 한다.'
+
   
-  네번째로 택시 모집 기능을 제공하고 있다. 택시 모집기능은 출발 장소, 도착 장소, 출발 시간 등을 올리면 그 정보를 확인하고 같이 택시를 타고 싶은 사람들이 모일 수 있도록 한다.
-
-
+# 최종 프로젝트
+  https://github.com/mhjoon99/SMU-Time
+  
 # 실행 영상
   (유튜브 링크 걸꺼임)))
   - 제작: 양하은, 심우정
