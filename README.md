@@ -128,7 +128,23 @@ OnClickListener 호출.
   btnLogin 버튼 클릭 시 userLogin() 메소드 호출
   
    #### userLogin() 메소드
-  
+  ![image](https://user-images.githubusercontent.com/70474860/121340985-2da61c80-c95b-11eb-93e1-9896d9c0c074.png)
+이메일 입력을 안 했을 때, 비밀번호 입력을 안 했을 때, 이메일 형식이 아닐 때, 상명대 웹메일 도메인 주소가 아닐 때, IsValidPwd()==false일 때 에러 메시지 출력.
+정상적으로 입력했을 때, Authentication의 DB와 이메일, 비밀번호 입력값을 비교 후 존재하는 계정이면 로그인 성공 후, MainActivity로 이동. 이때, 이메일 인증이 완료되지 않은 계정이면 다시 메일을 전송 후 이메일 인증을 완료하라는 에러 메시지 출력.
+존재하지 않는 계정이면 로그인 실패 에러 메시지 출력.
+
+   #### IsValidPwd() 메소드
+![image](https://user-images.githubusercontent.com/70474860/121341800-fc7a1c00-c95b-11eb-87c7-87c7ff0dd884.png)
+비밀번호 형식이 맞으면 true 값 반환. 아닐 경우, false 반환.
+
+  > ### 실행 화면
+![image](https://user-images.githubusercontent.com/70474860/121342120-4fec6a00-c95c-11eb-92bd-530d310b6530.png)
+#### 이메일 인증을 완료하지 않아 에러메시지가 출력되는 모습.
+![image](https://user-images.githubusercontent.com/70474860/121342293-74e0dd00-c95c-11eb-9080-b98825c27a6d.png)
+#### 해당 이메일로 메일이 전송된 모습.
+![image](https://user-images.githubusercontent.com/70474860/121342446-980b8c80-c95c-11eb-8c93-624670d5038d.png)
+#### 메일에 있는 링크를 통해 이메일 인증을 완료한 모습.
+
   ## - 메인화면(양하은)
   
   메인화면의 주요기능은 페이지 이동이다. 
