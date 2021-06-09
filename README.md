@@ -234,17 +234,18 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   city코드는 천안에 해당하는 25를 입력했다.
   서버에서 반환해준 callback으로 interface를 object형식으로 override 받는다.
   onResponse와 onFailure를 이용해 올바른 정보출력 형식인지 여부를 판단한다.
-  response.body가 response 값을 받는 것인데 
+  response.body가 response 값을 받는다.
   
 ![image](https://user-images.githubusercontent.com/80312446/121251442-d57f0400-c8e1-11eb-9c84-3c765a49ed76.png)
 ![image](https://user-images.githubusercontent.com/80312446/121251485-e3cd2000-c8e1-11eb-95cd-9f66febf8991.png)
 
-  4.Bus로 형을 변환해준다.
-  그러면 data를 타게 되고 Array 형식으로
+  4.Bus
+  이때 Bus로 형을 변환해준다.
+  그러면 data를 타게 되고 Array 형식으로 BusModel의 값들을 불러온다.
   
   ![image](https://user-images.githubusercontent.com/80312446/121251585-019a8500-c8e2-11eb-98c4-9198876f7fb1.png)
 
-  5.BusModel의 값들을 불러온다.
+  5.BusModel
   Model에서 정류소 값을 받았을 경우 출력되는 차량 번호, 남은 구간, 남은 시간을 출력해준다.
   그 다음은 intent를 이용하여 Busdetail을 불러온다.
   startActivity에서 BusDetailActivity로 넘어간다.
