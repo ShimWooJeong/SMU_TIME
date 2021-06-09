@@ -313,7 +313,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   
   메인화면에서 친구목록 버튼을 눌러 이동하면 친구를 추가 할 수 있는 화면이 나온다. 그리고 목록에 추가된 친구를 누르면 해당 친구와의 채팅이 가능한 화면이 나온다
   
-  <img width="740px" height="450px" alt="image" src="https://user-images.githubusercontent.com/80022793/121352999-5c76bf80-c968-11eb-800b-27d88e0e4375.png">
+  ![image](https://user-images.githubusercontent.com/80022793/121352999-5c76bf80-c968-11eb-800b-27d88e0e4375.png)
   
   ![image](https://user-images.githubusercontent.com/80022793/121353083-70babc80-c968-11eb-87e0-a9888f076c30.png)
   ![image](https://user-images.githubusercontent.com/80022793/121353101-757f7080-c968-11eb-99a4-9430552fe496.png)
