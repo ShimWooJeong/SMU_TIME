@@ -24,11 +24,25 @@
    > ### 1.회원가입
 
 회원가입의 주요 기능은 다음과 같다.
-1) 회원가입 형식 설정(입력창 빈칸이 있는지, 이메일/비밀번호 형식을 지켰는지, 상명대 웹메일 도메인 주소를 사용했는지 등)
-2) 입력한 이메일과 비밀번호 Firebase Authentication에 저장
-3) 입력한 정보(이메일, 비밀번호, 닉네임) Firebase Realtime Database에 저장
-4) 가입한 이메일이 허위인지 아닌지를 구별할 수 있도록 이메일 인증 메일 전송
 
+    1) 회원가입 형식 설정(입력창 빈칸이 있는지, 이메일/비밀번호 형식을 지켰는지, 상명대 웹메일 도메인 주소를 사용했는지 등)
+    2) 입력한 이메일과 비밀번호 Firebase Authentication에 저장
+    3) 입력한 정보(이메일, 비밀번호, 닉네임) Firebase Realtime Database에 저장
+    4) 가입한 이메일이 허위인지 아닌지를 구별할 수 있도록 이메일 인증 메일 전송
+
+사용 파일 :
+
+    - RegisterActivity.java : 회원가입을 실행하는 코드 작성
+    - User.java : 회원정보(이메일, 비밀번호, 닉네임)이 들어갈 DB
+    - activity_register.xml : 회원가입 레이아웃 작성
+
+  #### activity_register.xml
+  <레이아웃 화면>
+  
+    ![image](https://user-images.githubusercontent.com/70474860/121327906-d437f080-c94e-11eb-8401-c463b6988f04.png)
+
+  <코드>
+    
 
   > ### 2.로그인
   
