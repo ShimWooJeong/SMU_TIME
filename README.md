@@ -21,8 +21,221 @@
   
   > ### 1.회원가입
 
+package com.example.smu_time;
 
-  > ### 1.로그인
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class RegisterActivity extends AppCompatActivity {
+
+    public static Context mContext;
+    // 파이어베이스 인증 객체 생성
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReference;
+    private FirebaseUser mUser;
+    private EditText editEmail, editPwd, editPwdCheck, editName;
+    private Button btnEmail, btnSubmit;
+    private AlertDialog dialog;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+        mReference = FirebaseDatabase.getInstance().getReference();
+        mUser = mAuth.getCurrentUser();
+
+        editEmail = findViewById(R.id.editRegisterEmail);
+        editPwd = findViewById(R.id.editRegisterPwd);
+        editPwdCheck = findViewById(R.id.editRegisterPwdCheck);
+        editName = findViewById(R.id.editRegisterName);
+
+        btnEmail = (Button) findViewById(R.id.btnEmailCheck);
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        btnSubmit.setEnabled(false);
+        btnSubmit.setBackgroundColor(Color.parseColor("#666666"));
+        btnSubmit.setTextColor(Color.parseColor("#FFFFFF"));
+
+//        findViewById(R.id.btnSubmit).setOnClickListener(onClickListener);
+//        findViewById(R.id.btnRegisterSubmit).setOnClickListener(onClickListener);
+
+        btnEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emailCheck();
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(IsValidPwd()==true && IsPwdChecked()==true && IsEmptyName()==false){
+                    createNewUser();
+                }
+            }
+        });
+    }
+
+    private void emailCheck() {
+        String email = editEmail.getText().toString();
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
+
+        if(email.isEmpty()){
+            editEmail.setError("이메일을 입력하세요.");
+            editEmail.requestFocus();
+            btnSubmit.setEnabled(false);
+            btnSubmit.setBackgroundColor(Color.parseColor("#666666"));
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editEmail.setError("이메일 형식이 아닙니다.");
+            editEmail.requestFocus();
+            btnSubmit.setEnabled(false);
+            btnSubmit.setBackgroundColor(Color.parseColor("#666666"));
+            return;
+        }
+        else if(!email.contains("@sangmyung.kr")){
+            editEmail.setError("등록된 상명대학교 웹메일 주소를 입력하세요.");
+            editEmail.requestFocus();
+            btnSubmit.setEnabled(false);
+            btnSubmit.setBackgroundColor(Color.parseColor("#666666"));
+            return;
+        }
+        else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+            dialog = builder.setMessage("사용할 수 있는 이메일입니다.")
+                    .setPositiveButton("확인",null).create();
+            dialog.show();
+            btnSubmit.setEnabled(true);
+            btnSubmit.setBackgroundColor(Color.parseColor("#216ef3"));
+            return;
+        }
+
+    }
+
+    //보안강화를 위한 비밀번호 설정정
+    private boolean IsValidPwd() {
+        String password = editPwd.getText().toString();
+        // 비밀번호 유효성 검사식1 : 숫자, 특수문자가 포함되어야 한다.
+        String val_symbol = "([0-9].*[!,@,#,^,&,*,(,)])|([!,@,#,^,&,*,(,)].*[0-9])";
+        // 비밀번호 유효성 검사식2 : 영문자 대소문자가 적어도 하나씩은 포함되어야 한다.
+        String val_alpha = "([a-z].*[A-Z])|([A-Z].*[a-z])";
+        // 정규표현식 컴파일
+        Pattern pattern_symbol = Pattern.compile(val_symbol);
+        Pattern pattern_alpha = Pattern.compile(val_alpha);
+
+        Matcher matcher_symbol = pattern_symbol.matcher(password);
+        Matcher matcher_alpha = pattern_alpha.matcher(password);
+
+        if (matcher_symbol.find() && matcher_alpha.find() && password.length() >= 8) {
+            return true;
+        }else {
+            editPwd.setError("비밀번호는 대소문자, 숫자, 특수문자를 포함하여 8자 이상이어야 합니다.");
+            editPwd.requestFocus();
+            return false;
+        }
+    }
+    //Check editPwd == editPwdCheck
+    private boolean IsPwdChecked() {
+        String password = editPwd.getText().toString();
+        String pwdCheck = editPwdCheck.getText().toString();
+
+        if(password.matches(pwdCheck)) {
+            return true;
+        }else {
+            editPwdCheck.setError("비밀번호가 다릅니다.");
+            editPwdCheck.requestFocus();
+            return false;
+        }
+    }
+
+    private boolean IsEmptyName() {
+        String name = editName.getText().toString();
+
+        if(name.isEmpty()){
+            editName.setError("닉네임을 입력하세요.");
+            editName.requestFocus();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private void createNewUser() {
+
+        String email = editEmail.getText().toString();
+        String password = editPwd.getText().toString();
+        String name = editName.getText().toString();
+        String uid = mUser.getUid();
+
+        User user = new User(email, password, name);
+
+        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            dialog.dismiss();
+                            HashMap<Object, String> hashMap = new HashMap<>();
+
+                            //hashMap.put("uid", uid);
+                            hashMap.put("email", email);
+                            hashMap.put("password", password);
+                            hashMap.put("name", name);
+
+                            mDatabase = FirebaseDatabase.getInstance();
+                            mReference = mDatabase.getReference("Users");
+                            mReference.child(uid).setValue(hashMap);
+
+//                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+//                            startActivity(intent);
+                            finish();
+                            Toast.makeText(RegisterActivity.this, "메일을 발송했습니다. 이메일 인증을 통해 회원가입을 완료하세요.", Toast.LENGTH_SHORT).show();
+                            mUser.sendEmailVerification();
+                        } else {
+                            editEmail.setError("이미 등록된 계정입니다.");
+                            editEmail.requestFocus();
+                            return;
+                        }
+                    }
+                });
+    }
+}
+
+
+
+  > ### 2.로그인
   
   ## - 메인화면
   
