@@ -275,16 +275,18 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   
   ![image](https://user-images.githubusercontent.com/80017979/121277318-4e468600-c90b-11eb-9a35-91d421c68944.png)
   
-  택시 장소를 입력할 때 카카오맵 api를 이용하여 지도를 띄우는 것은 성공했지만, 값을 받아오는 것은 구현하지 못했다.
+  택시 장소를 입력할 때 카카오맵 api를 이용하여 지도를 띄우는 것은 성공했지만, 클릭리스너에서 발생하는 오류를 해결하지 못해 좌표 값을 받아오는 것은 구현하지 못했다.
   
   ![image](https://user-images.githubusercontent.com/80017979/121277357-674f3700-c90b-11eb-8652-ac40267f618f.png)
   ![image](https://user-images.githubusercontent.com/80017979/121277379-733af900-c90b-11eb-804c-72710920e9e6.png)
 
   이렇게 저장된 데이터는 다시 firebase에 연결하여 가져오게 된다. 이 과정에서 CustomAdapter를 이용하여 recyclerview에 item을 생성하여 게시판을 만들게 된다.
   
-  ![image](https://user-images.githubusercontent.com/80017979/121277413-80f07e80-c90b-11eb-8ac6-d3d1679258b2.png)
+  ![image](https://user-images.githubusercontent.com/80017979/121306259-92e91600-c939-11eb-8371-209c89029a8a.png)
+  ![image](https://user-images.githubusercontent.com/80017979/121306528-e9eeeb00-c939-11eb-812c-db6f78e0b81b.png)
+
   
-  또한 item마다 onClick을 연결하여 item이 클릭될 때 마다 인원이 1명씩 증가하고 현재 인원과 모집인원이 같아지게 되면 Toast를 통해 인원이 가득찼다는 메시지와 함께 더 이상 인원이 늘어나지 않도록 구현하였다.
+  또한 item마다 onClick을 연결하여 item이 클릭될 때 마다 인원이 1명씩 증가한다. 원래는 db에 있는 값을 수정해서 숫자를 늘리고 싶었지만 키값을 받아오는 것이 잘 해결되지 않아 새로 값을 추가하도록 구현하였다. 현재 인원과 모집인원이 같아지게 되면 Toast를 통해 인원이 가득찼다는 메시지와 함께 더 이상 인원이 늘어나지 않도록 구현하였다.
 
 
 
