@@ -32,9 +32,9 @@
 
 사용 파일 :
 
+    - activity_register.xml : 회원가입 레이아웃 작성
     - RegisterActivity.java : 회원가입을 실행하는 코드 작성
     - User.java : 회원정보(이메일, 비밀번호, 닉네임)이 들어갈 DB
-    - activity_register.xml : 회원가입 레이아웃 작성
 
   > ### activity_register.xml
   #### 레이아웃 화면
@@ -43,6 +43,23 @@
    
   #### 코드
    ![image](https://user-images.githubusercontent.com/70474860/121328667-7ce65000-c94f-11eb-95c3-d47aa4a1266b.png)
+
+
+  > ### RegisterActivity.java
+  
+  #### import 및 변수 선언
+  
+  ![image](https://user-images.githubusercontent.com/70474860/121331553-f1ba8980-c951-11eb-8abb-c152a2e7a477.png)
+
+  #### onCreate 메소드
+
+activity_register.xml에 있는 객체들을 변수와 link.
+OnClickListener 호출.
+  btnEmail 버튼 클릭 시 emailCheck() 메소드 호출
+  btnSubmit 버튼 클릭 시 조건(if(IsValidPwd()==true && IsPwdChecked()==true && IsEmptyName()==false))에 따라 createNewUser() 메소드 호출
+
+![image](https://user-images.githubusercontent.com/70474860/121331691-16aefc80-c952-11eb-87ab-2504b4c126fd.png)
+
 
 
   ### 2.로그인
