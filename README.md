@@ -37,11 +37,11 @@
     - activity_register.xml : 회원가입 레이아웃 작성
 
   > ### activity_register.xml
-  ## 레이아웃 화면
+  #### 레이아웃 화면
   
    ![image](https://user-images.githubusercontent.com/70474860/121330595-1d893f80-c951-11eb-9d06-625384247dd6.png)
    
-  ## 코드
+  #### 코드
    ![image](https://user-images.githubusercontent.com/70474860/121328667-7ce65000-c94f-11eb-95c3-d47aa4a1266b.png)
 
 
