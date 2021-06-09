@@ -253,9 +253,9 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 
   이렇게 저장된 데이터는 다시 firebase에 연결하여 가져오게 된다. 이 과정에서 CustomAdapter를 이용하여 recyclerview에 item을 생성하여 게시판을 만들게 된다.
   
-  ![image](https://user-images.githubusercontent.com/80017979/121277413-80f07e80-c90b-11eb-8ac6-d3d1679258b2.png)
+  ![image](https://user-images.githubusercontent.com/80017979/121296242-4b5b8d80-c92b-11eb-8250-c46c34583acc.png)
   
-  또한 item마다 onClick을 연결하여 item이 클릭될 때 마다 인원이 1명씩 증가하고 현재 인원과 모집인원이 같아지게 되면 Toast를 통해 인원이 가득찼다는 메시지와 함께 더 이상 인원이 늘어나지 않도록 구현하였다.
+  또한 item마다 onClick을 연결하여 item이 클릭될 때 마다 인원이 1명씩 증가하고 현재 인원과 모집인원이 같아지게 되면 Toast를 통해 인원이 가득찼다는 메시지와 함께 더 이상 인원이 늘어나지 않도록 구현하였다. 클릭할때마다 사람 수 데이터를 업데이트 해주는 코드를 작성하려고 했는데 키값을 받아오는 것이 잘 안되서 새로 데이터를 집어넣는 형식으로 구현하였다.
 
 
 
