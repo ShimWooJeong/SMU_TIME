@@ -21,7 +21,7 @@
   
   회원가입과 로그인에서는 Firebase Authentication과 Firebase Realtime Database를 이용해 구현하였다.
   
-   > ### 1.회원가입
+   ### 1.회원가입
 
 회원가입의 주요 기능은 다음과 같다.
 
@@ -36,16 +36,16 @@
     - User.java : 회원정보(이메일, 비밀번호, 닉네임)이 들어갈 DB
     - activity_register.xml : 회원가입 레이아웃 작성
 
-  #### <activity_register.xml>
-  -레이아웃 화면
+  > ### activity_register.xml
+  ## 레이아웃 화면
   
    ![image](https://user-images.githubusercontent.com/70474860/121330595-1d893f80-c951-11eb-9d06-625384247dd6.png)
    
-  -코드
+  ## 코드
    ![image](https://user-images.githubusercontent.com/70474860/121328667-7ce65000-c94f-11eb-95c3-d47aa4a1266b.png)
 
 
-  > ### 2.로그인
+  ### 2.로그인
   
   
   ## - 메인화면
