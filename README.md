@@ -37,7 +37,7 @@
     - User.java : 회원정보(이메일, 비밀번호, 닉네임)이 들어갈 DB
 
   > ### activity_register.xml
-  > 
+  
   #### 레이아웃 화면
    ![image](https://user-images.githubusercontent.com/70474860/121330595-1d893f80-c951-11eb-9d06-625384247dd6.png)
    
@@ -83,9 +83,51 @@ mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener에�
 계정 생성에 성공하면 User.java를 호출하여 해당 입력값을 Realtime Database에 저장.
 저장 후, 해당하는 이메일 주소로 인증 메일 발송.
 
+  > ### User.java
+![image](https://user-images.githubusercontent.com/70474860/121337480-8a9fd380-c957-11eb-81f4-e80f20c52789.png)
+User에 담길 DB 설정.
+
+  > ### 실행 화면
+![image](https://user-images.githubusercontent.com/70474860/121338152-31846f80-c958-11eb-8414-a07b6b1c329e.png)
+#### 입력값 넣기
+![image](https://user-images.githubusercontent.com/70474860/121338265-4e20a780-c958-11eb-9d7e-d6421cc227f3.png)
+#### Firebase Authentication에 입력한 내용이 저장된 모습
+![image](https://user-images.githubusercontent.com/70474860/121338439-78726500-c958-11eb-841f-2fa02f8c0f9c.png)
+#### Firebase Realtime Database에 입력한 내용(이메일, 닉네임, 비밀번호)이 저장된 모습
 
   ### 2.로그인
   
+  로그인의 주요 기능은 다음과 같다.
+
+    1) 로그인 형식 설정(입력창 빈칸이 있는지, 이메일/비밀번호 형식을 지켰는지, 상명대 웹메일 도메인 주소를 사용했는지 등)
+    2) 입력한 이메일과 비밀번호가 Firebase Authentication의 계정과 동일한지에 대한 여부
+    4) 인증하지 않은 이메일일 경우 한 번 더 해당하는 이메일에 메일 전송
+
+사용 파일 :
+
+    - activity_login.xml : 로그인 레이아웃 작성
+    - LoginActivity.java : 로그인을 실행하는 코드 작성
+  
+  > ### activity_login.xml
+  #### 레이아웃 화면
+![image](https://user-images.githubusercontent.com/70474860/121340102-2a5e6100-c95a-11eb-83bb-745107dfec72.png)
+   
+  #### 코드
+![image](https://user-images.githubusercontent.com/70474860/121339827-d94e6d00-c959-11eb-848d-18237096c86a.png)
+
+  > ### LoginActivity.java
+  
+  #### import 및 변수 선언
+![image](https://user-images.githubusercontent.com/70474860/121340238-55e14b80-c95a-11eb-8f46-653343620638.png)
+
+  #### onCreate() 메소드
+![image](https://user-images.githubusercontent.com/70474860/121340288-698cb200-c95a-11eb-8d2a-d042c648eeb6.png)
+activity_login.xml에 있는 객체들을 변수와 link.
+OnClickListener 호출.
+  btnRegister 버튼 클릭 시 RegisterActivity.java 클래스 호출 -> 회원가입 layout 장면 전환.
+  btnLogin 버튼 클릭 시 userLogin() 메소드 호출
+  
+   #### userLogin() 메소드
   
   ## - 메인화면
   
