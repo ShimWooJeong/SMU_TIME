@@ -37,8 +37,8 @@
     - User.java : 회원정보(이메일, 비밀번호, 닉네임)이 들어갈 DB
 
   > ### activity_register.xml
+  > 
   #### 레이아웃 화면
-  
    ![image](https://user-images.githubusercontent.com/70474860/121330595-1d893f80-c951-11eb-9d06-625384247dd6.png)
    
   #### 코드
@@ -48,19 +48,38 @@
   > ### RegisterActivity.java
   
   #### import 및 변수 선언
-  
   ![image](https://user-images.githubusercontent.com/70474860/121331553-f1ba8980-c951-11eb-8abb-c152a2e7a477.png)
 
-  #### onCreate 메소드
-
+  #### onCreate() 메소드
+![image](https://user-images.githubusercontent.com/70474860/121331691-16aefc80-c952-11eb-87ab-2504b4c126fd.png)
 activity_register.xml에 있는 객체들을 변수와 link.
 OnClickListener 호출.
   btnEmail 버튼 클릭 시 emailCheck() 메소드 호출
   btnSubmit 버튼 클릭 시 조건(if(IsValidPwd()==true && IsPwdChecked()==true && IsEmptyName()==false))에 따라 createNewUser() 메소드 호출
+  
+  #### emailcheck() 메소드 -> btnEmail 클릭 시 호출
+![image](https://user-images.githubusercontent.com/70474860/121333020-5de9bd00-c953-11eb-9e2b-270e5bd2b2c1.png)
+editRegisterEmail의 입력에 따라 결과 설정
 
-![image](https://user-images.githubusercontent.com/70474860/121331691-16aefc80-c952-11eb-87ab-2504b4c126fd.png)
+    잘못 입력했을 경우: 해당 editText에 focus되며, "가입" 버튼을 비활성화. 비활성화된 것을 시각적으로 표현하기 위해 backgroundColor를 회색으로 설정.
+    정상적으로 입력했을 경우: btnSubmit 버튼이 활성화됨. 활성화된 것을 시각적으로 표현하기 위해 backgroundColor를 파란색으로 설정.
 
+  #### IsValidPwd() 메소드
+![image](https://user-images.githubusercontent.com/70474860/121334197-6c84a400-c954-11eb-9201-26dcc6f63b5d.png)
+보안강화를 위해 비밀번호 정규표현식을 설정하였다. 
+editRegisterPwd에 입력한 값이 대소문자, 숫자, 특수문자를 모두 포함하고 8자 이상이어야 isValidPwd() 메소드가 true를 반환.
 
+  #### IsValidPwdCheck() 메소드
+![image](https://user-images.githubusercontent.com/70474860/121335013-2c71f100-c955-11eb-8e7d-edece8a7a2b8.png)
+editRegisterPwd 입력값과 editRegisterPwdCheck 입력값이 값아야 IsValidPwdCheck() 메소드가 true를 반환.
+
+  #### IsEmptyName() 메소드
+![image](https://user-images.githubusercontent.com/70474860/121335391-807cd580-c955-11eb-841a-9138b4a1a629.png)
+editRegisterName에 입력값이 있어야 IsEmptyName() 메소드가 true를 반환.
+
+  #### createNewUser() 메소드 -> btnSubmit 클릭 시 세 메소드 IsValidPwd(), IsValidPwdCheck(), IsEmptyName()의 반환값이 모두 true일 때 호출
+![image](https://user-images.githubusercontent.com/70474860/121336120-2d575280-c956-11eb-9c69-6547639eba31.png)
+mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener : 입력한 email과 password를 Firebase Authentication에 저장
 
   ### 2.로그인
   
