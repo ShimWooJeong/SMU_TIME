@@ -79,7 +79,10 @@ editRegisterName에 입력값이 있어야 IsEmptyName() 메소드가 true를 �
 
   #### createNewUser() 메소드 -> btnSubmit 클릭 시 세 메소드 IsValidPwd(), IsValidPwdCheck(), IsEmptyName()의 반환값이 모두 true일 때 호출
 ![image](https://user-images.githubusercontent.com/70474860/121336120-2d575280-c956-11eb-9c69-6547639eba31.png)
-mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener : 입력한 email과 password를 Firebase Authentication에 저장
+mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener에서 입력한 email과 password를 Firebase Authentication에 계정 생성. 만약, 이미 있는 계정이면 이미 등록된 계정이라고 뜸.
+계정 생성에 성공하면 User.java를 호출하여 해당 입력값을 Realtime Database에 저장.
+저장 후, 해당하는 이메일 주소로 인증 메일 발송.
+
 
   ### 2.로그인
   
