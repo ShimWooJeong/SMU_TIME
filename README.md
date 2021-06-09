@@ -7,7 +7,7 @@
     - 회원가입/로그인
     - 게시판
     - 시간표
-    - 채팅
+    - 친구추가 및 목록/채팅
     - 셔틀버스시간표
     - 버스시간표
     - 택시 모집
@@ -17,7 +17,7 @@
 
 # 기능 구현
 
-  ## - 회원가입/로그인
+  ## - 회원가입/로그인(마혜준)
   
   회원가입과 로그인에서는 Firebase Authentication과 Firebase Realtime Database를 이용해 구현하였다.
   
@@ -128,24 +128,8 @@ OnClickListener 호출.
   btnLogin 버튼 클릭 시 userLogin() 메소드 호출
   
    #### userLogin() 메소드
-![image](https://user-images.githubusercontent.com/70474860/121340985-2da61c80-c95b-11eb-93e1-9896d9c0c074.png)
-이메일 입력을 안 했을 때, 비밀번호 입력을 안 했을 때, 이메일 형식이 아닐 때, 상명대 웹메일 도메인 주소가 아닐 때, IsValidPwd()==false일 때 에러 메시지 출력.
-정상적으로 입력했을 때, Authentication의 DB와 이메일, 비밀번호 입력값을 비교 후 존재하는 계정이면 로그인 성공 후, MainActivity로 이동. 이때, 이메일 인증이 완료되지 않은 계정이면 다시 메일을 전송 후 이메일 인증을 완료하라는 에러 메시지 출력.
-존재하지 않는 계정이면 로그인 실패 에러 메시지 출력.
-
-   #### IsValidPwd() 메소드
-![image](https://user-images.githubusercontent.com/70474860/121341800-fc7a1c00-c95b-11eb-87c7-87c7ff0dd884.png)
-비밀번호 형식이 맞으면 true 값 반환. 아닐 경우, false 반환.
-
-  > ### 실행 화면
-![image](https://user-images.githubusercontent.com/70474860/121342120-4fec6a00-c95c-11eb-92bd-530d310b6530.png)
-#### 이메일 인증을 완료하지 않아 에러메시지가 출력되는 모습.
-![image](https://user-images.githubusercontent.com/70474860/121342293-74e0dd00-c95c-11eb-9080-b98825c27a6d.png)
-#### 해당 이메일로 메일이 전송된 모습.
-![image](https://user-images.githubusercontent.com/70474860/121342446-980b8c80-c95c-11eb-8c93-624670d5038d.png)
-#### 메일에 있는 링크를 통해 이메일 인증을 완료한 모습.
   
-  ## - 메인화면
+  ## - 메인화면(양하은)
   
   메인화면의 주요기능은 페이지 이동이다. 
   Fragment를 이용하여 bottomNavi를 제작하여 구성하려고 하였으나 4번째 화면을 수업시간에 배운 내용을 응용하여 CardView로 교통부분의 페이지를 구성하였는데,
@@ -162,7 +146,7 @@ OnClickListener 호출.
   
   ![image](https://user-images.githubusercontent.com/80017979/121243561-cd6e9680-c8d8-11eb-86f9-ce3690db2da7.png)
   
-  ## - 게시판 (심우정)
+  ## - 게시판(심우정)
   
     - 게시판의 세부 기능
     1.게시글 작성, 불러오기
@@ -262,7 +246,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 <img width="300px" height="400px" alt="image" src="https://user-images.githubusercontent.com/70475213/121225654-b32abd80-c8c4-11eb-8239-d1f47a9cd7a2.png"><br/>
 **(RealtimeDatabase의 Like(좋아요)테이블, 이 상태에서 2번 글의 좋아요를 누르면 2번 글의 like_count가 1이 되고, 1번 글의 좋아요를 취소하면 1번 글의 like_count가 0이 된다.)**<br/><br/>
   
-  ## - 시간표 / 일정 추천 (박윤빈)
+  ## - 시간표 / 일정 추천(박윤빈)
   
   > ### 1. AutoResizeTextView.class
   
@@ -298,7 +282,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   ![10](https://user-images.githubusercontent.com/79950206/121300910-654c9e80-c932-11eb-92ad-9add3f15ba2e.jpg)
   ![11](https://user-images.githubusercontent.com/79950206/121300985-82816d00-c932-11eb-8f66-21a15a545067.jpg)
 
-  ## - 채팅
+  ## - 채팅(양하은)
   
   채팅의 주요기능은 실시간으로 대화를 할 수 있다는 것이다. 
   
@@ -314,7 +298,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   실시간으로 채팅을 주고받을 수 있으며 addChildEventListener를 이용하여 채팅을 주고받는 것을 구현하였다. 
   원래는 단체채팅을 가능하게 하는 것이 목표였지만 채팅을 하는 채팅방안에 2명 이상의 유저를 등록하는 것을 실패하여 결국 구현하지 못하였다
   
-  ## - 셔틀버스시간표
+  ## - 셔틀버스시간표(김다혜)
   셔틀버스 시간표에서 가장 중요한 기능은 실시간 타이머를 구현하는 것이었다. 
   
   ![image](https://user-images.githubusercontent.com/80017979/121248102-fb0a0e80-c8dd-11eb-9388-2da9b62b0079.png)
@@ -333,7 +317,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 
 
   
-  ## - 버스시간표
+  ## - 버스시간표(박승준)
   
   > ### 1. RetrofitManager
   Retrofit은 안드로이드 애플리케이션에서 통신 기능에 사용하는 코드를 사용하기 쉽게 만들어 놓은 라이브러리이다.
@@ -390,7 +374,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 
 ![image](https://user-images.githubusercontent.com/80312446/121251836-44f4f380-c8e2-11eb-8fd8-0b99744ccdb5.png)
   
-  ## - 택시 모집
+  ## - 택시 모집(김다혜)
   
   택시 모집은 택시의 출발장소, 도착장소, 탑승인원, 탑승시간을 입력하여 글을 작성하면 그 글을 통해서 같이 택시 탈 사람을 모집하는 기능이다. 택시 모집의 레이아웃은 recyclerview를 이용했다. 또한 게시글을 작성하면 firebase의 realtimedatabase에 정보를 저장하고 recyclerview에 게시글을 불러오게 된다. 
   
@@ -429,8 +413,9 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   세번째로 상명대학교 근처에 있는 버스정류장에 대한 버스 도착정보를 제공하고 있다. 학교 주변에 있는 안서동보A, 상명대학교 정류장의 정류장 번호 또는 정류장 이름을 입력하면 버스들의 도착정보를 제공한다. 
   
   네번째로 택시 모집 기능을 제공하고 있다. 택시 모집기능은 출발 장소, 도착 장소, 출발 시간 등을 올리면 그 정보를 확인하고 같이 택시를 타고 싶은 사람들이 모일 수 있도록 한다.
-  
-# 최종 프로젝트 링크
-     https://github.com/mhjoon99/SMU-Time
-  
+
+
 # 실행 영상
+  (유튜브 링크 걸꺼임)))
+  - 제작: 양하은, 심우정
+  
