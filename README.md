@@ -21,221 +21,8 @@
   
   > ### 1.회원가입
 
-package com.example.smu_time;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
-import android.util.Patterns;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class RegisterActivity extends AppCompatActivity {
-
-    public static Context mContext;
-    // 파이어베이스 인증 객체 생성
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase mDatabase;
-    private DatabaseReference mReference;
-    private FirebaseUser mUser;
-    private EditText editEmail, editPwd, editPwdCheck, editName;
-    private Button btnEmail, btnSubmit;
-    private AlertDialog dialog;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-        mReference = FirebaseDatabase.getInstance().getReference();
-        mUser = mAuth.getCurrentUser();
-
-        editEmail = findViewById(R.id.editRegisterEmail);
-        editPwd = findViewById(R.id.editRegisterPwd);
-        editPwdCheck = findViewById(R.id.editRegisterPwdCheck);
-        editName = findViewById(R.id.editRegisterName);
-
-        btnEmail = (Button) findViewById(R.id.btnEmailCheck);
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-        btnSubmit.setEnabled(false);
-        btnSubmit.setBackgroundColor(Color.parseColor("#666666"));
-        btnSubmit.setTextColor(Color.parseColor("#FFFFFF"));
-
-//        findViewById(R.id.btnSubmit).setOnClickListener(onClickListener);
-//        findViewById(R.id.btnRegisterSubmit).setOnClickListener(onClickListener);
-
-        btnEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                emailCheck();
-            }
-        });
-
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(IsValidPwd()==true && IsPwdChecked()==true && IsEmptyName()==false){
-                    createNewUser();
-                }
-            }
-        });
-    }
-
-    private void emailCheck() {
-        String email = editEmail.getText().toString();
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-
-        if(email.isEmpty()){
-            editEmail.setError("이메일을 입력하세요.");
-            editEmail.requestFocus();
-            btnSubmit.setEnabled(false);
-            btnSubmit.setBackgroundColor(Color.parseColor("#666666"));
-            return;
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editEmail.setError("이메일 형식이 아닙니다.");
-            editEmail.requestFocus();
-            btnSubmit.setEnabled(false);
-            btnSubmit.setBackgroundColor(Color.parseColor("#666666"));
-            return;
-        }
-        else if(!email.contains("@sangmyung.kr")){
-            editEmail.setError("등록된 상명대학교 웹메일 주소를 입력하세요.");
-            editEmail.requestFocus();
-            btnSubmit.setEnabled(false);
-            btnSubmit.setBackgroundColor(Color.parseColor("#666666"));
-            return;
-        }
-        else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-            dialog = builder.setMessage("사용할 수 있는 이메일입니다.")
-                    .setPositiveButton("확인",null).create();
-            dialog.show();
-            btnSubmit.setEnabled(true);
-            btnSubmit.setBackgroundColor(Color.parseColor("#216ef3"));
-            return;
-        }
-
-    }
-
-    //보안강화를 위한 비밀번호 설정정
-    private boolean IsValidPwd() {
-        String password = editPwd.getText().toString();
-        // 비밀번호 유효성 검사식1 : 숫자, 특수문자가 포함되어야 한다.
-        String val_symbol = "([0-9].*[!,@,#,^,&,*,(,)])|([!,@,#,^,&,*,(,)].*[0-9])";
-        // 비밀번호 유효성 검사식2 : 영문자 대소문자가 적어도 하나씩은 포함되어야 한다.
-        String val_alpha = "([a-z].*[A-Z])|([A-Z].*[a-z])";
-        // 정규표현식 컴파일
-        Pattern pattern_symbol = Pattern.compile(val_symbol);
-        Pattern pattern_alpha = Pattern.compile(val_alpha);
-
-        Matcher matcher_symbol = pattern_symbol.matcher(password);
-        Matcher matcher_alpha = pattern_alpha.matcher(password);
-
-        if (matcher_symbol.find() && matcher_alpha.find() && password.length() >= 8) {
-            return true;
-        }else {
-            editPwd.setError("비밀번호는 대소문자, 숫자, 특수문자를 포함하여 8자 이상이어야 합니다.");
-            editPwd.requestFocus();
-            return false;
-        }
-    }
-    //Check editPwd == editPwdCheck
-    private boolean IsPwdChecked() {
-        String password = editPwd.getText().toString();
-        String pwdCheck = editPwdCheck.getText().toString();
-
-        if(password.matches(pwdCheck)) {
-            return true;
-        }else {
-            editPwdCheck.setError("비밀번호가 다릅니다.");
-            editPwdCheck.requestFocus();
-            return false;
-        }
-    }
-
-    private boolean IsEmptyName() {
-        String name = editName.getText().toString();
-
-        if(name.isEmpty()){
-            editName.setError("닉네임을 입력하세요.");
-            editName.requestFocus();
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    private void createNewUser() {
-
-        String email = editEmail.getText().toString();
-        String password = editPwd.getText().toString();
-        String name = editName.getText().toString();
-        String uid = mUser.getUid();
-
-        User user = new User(email, password, name);
-
-        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            dialog.dismiss();
-                            HashMap<Object, String> hashMap = new HashMap<>();
-
-                            //hashMap.put("uid", uid);
-                            hashMap.put("email", email);
-                            hashMap.put("password", password);
-                            hashMap.put("name", name);
-
-                            mDatabase = FirebaseDatabase.getInstance();
-                            mReference = mDatabase.getReference("Users");
-                            mReference.child(uid).setValue(hashMap);
-
-//                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                            startActivity(intent);
-                            finish();
-                            Toast.makeText(RegisterActivity.this, "메일을 발송했습니다. 이메일 인증을 통해 회원가입을 완료하세요.", Toast.LENGTH_SHORT).show();
-                            mUser.sendEmailVerification();
-                        } else {
-                            editEmail.setError("이미 등록된 계정입니다.");
-                            editEmail.requestFocus();
-                            return;
-                        }
-                    }
-                });
-    }
-}
-
-
-
-  > ### 2.로그인
+  > ### 1.로그인
   
   ## - 메인화면
   
@@ -427,7 +214,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   
   ## - 버스시간표
   
-  1.RetrofitManager
+  1.RetrofitManager)
   Retrofit은 안드로이드 애플리케이션에서 통신 기능에 사용하는 코드를 사용하기 쉽게 만들어 놓은 라이브러리이다.
   데이터를 보다 쉽게 가져오고 업로드 할 수 있게 한다.
   먼저 ApiUrl에 api 주소를 입력한다.
@@ -435,14 +222,14 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   
 ![image](https://user-images.githubusercontent.com/80312446/121250816-20e4e280-c8e1-11eb-895a-e2dff0196c77.png)
 
-  2.Service
+  2.Service)
   RetrofitService interface를 작성한다.
   GET 타입으로 각각의 Query에 정보(url)를 입력한다.
   Header는 보안을 위해 Query대신 사용했다.
   
   ![image](https://user-images.githubusercontent.com/80312446/121250977-52f64480-c8e1-11eb-9c4a-7af416024f4d.png)
 
-  3.BusMainActivity
+  3.BusMainActivity)
   api를 사용하기 위해서 URLDecode를 사용해야 한다. 이를 위해서는 인증이 필요하지만 공공데이터포털의 인증이 이루어지지 않았고,
   문의를 남겨보았지만 답변이 오지 않았다.
   하여 loadRealBusInfo 사용 대신 loadPostmanBusInfo를 사용했다.
@@ -457,27 +244,27 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 ![image](https://user-images.githubusercontent.com/80312446/121251442-d57f0400-c8e1-11eb-9c84-3c765a49ed76.png)
 ![image](https://user-images.githubusercontent.com/80312446/121251485-e3cd2000-c8e1-11eb-95cd-9f66febf8991.png)
 
-  4.Bus
+  4.Bus)
   이때 Bus로 형을 변환해준다.
   그러면 data를 타게 되고 Array 형식으로 BusModel의 값들을 불러온다.
   
   ![image](https://user-images.githubusercontent.com/80312446/121251585-019a8500-c8e2-11eb-98c4-9198876f7fb1.png)
 
-  5.BusModel
+  5.BusModel)
   Model에서 정류소 값을 받았을 경우 출력되는 차량 번호, 남은 구간, 남은 시간을 출력해준다.
   그 다음은 intent를 이용하여 Busdetail을 불러온다.
   startActivity에서 BusDetailActivity로 넘어간다.
   
   ![image](https://user-images.githubusercontent.com/80312446/121251682-1c6cf980-c8e2-11eb-8784-2adc93c113c3.png)
 
-  6.BusDetailActivity
+  6.BusDetailActivity)
   BusDetailActivity로 넘어오면 getSerializableExtra로 정보를 받아온다.
   lazy(지연초기화)를 사용하여 데이터 호출시에 데이터를 즉시 초기화 시켜서 온다.
   그 후 RecyclerView로 넘긴다.
   
   ![image](https://user-images.githubusercontent.com/80312446/121251756-2f7fc980-c8e2-11eb-9e08-cfef3734a993.png)
 
-  7.RecyclerView
+  7.RecyclerView)
   RecyclerView를 이용하여 데이터를 효율적으로 표시 할 수 있도록 한다.
 
 ![image](https://user-images.githubusercontent.com/80312446/121251836-44f4f380-c8e2-11eb-8fd8-0b99744ccdb5.png)
