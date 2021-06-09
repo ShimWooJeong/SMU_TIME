@@ -231,6 +231,32 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   
   ## -택시 모집
   
+  택시 모집은 택시의 출발장소, 도착장소, 탑승인원, 탑승시간을 입력하여 글을 작성하면 그 글을 통해서 같이 택시 탈 사람을 모집하는 기능이다. 택시 모집의 레이아웃은 recyclerview를 이용했다. 또한 게시글을 작성하면 firebase의 realtimedatabase에 정보를 저장하고 recyclerview에 게시글을 불러오게 된다. 
+  
+  ![image](https://user-images.githubusercontent.com/80017979/121277265-366f0200-c90b-11eb-8090-4ee87c319c3c.png)
+  ![image](https://user-images.githubusercontent.com/80017979/121277296-45ee4b00-c90b-11eb-95db-281e4be345a2.png)
+
+  게시글을 내용을 db에 저장하는 코드이다. db에 정보를 넣어주기 위해서 Board라는 클래스를 만들었다. 버튼을 클릭하면 EditText에 들어있는 텍스트값을 읽어와서 Board에 넣어준 후 TaxiBoard테이블에 board값을 넣어준다. 
+  
+  ![image](https://user-images.githubusercontent.com/80017979/121277318-4e468600-c90b-11eb-9a35-91d421c68944.png)
+  
+  택시 장소를 입력할 때 카카오맵 api를 이용하여 지도를 띄우는 것은 성공했지만, 값을 받아오는 것은 구현하지 못했다.
+  
+  ![image](https://user-images.githubusercontent.com/80017979/121277357-674f3700-c90b-11eb-8652-ac40267f618f.png
+  ![image](https://user-images.githubusercontent.com/80017979/121277379-733af900-c90b-11eb-804c-72710920e9e6.png)
+
+  이렇게 저장된 데이터는 다시 firebase에 연결하여 가져오게 된다. 이 과정에서 CustomAdapter를 이용하여 recyclerview에 item을 생성하여 게시판을 만들게 된다.
+  
+  ![image](https://user-images.githubusercontent.com/80017979/121277413-80f07e80-c90b-11eb-8ac6-d3d1679258b2.png)
+  
+  또한 item마다 onClick을 연결하여 item이 클릭될 때 마다 인원이 1명씩 증가하고 현재 인원과 모집인원이 같아지게 되면 Toast를 통해 인원이 가득찼다는 메시지와 함께 더 이상 인원이 늘어나지 않도록 구현하였다.
+
+
+
+  
+  
+
+  
 # 다른 어플과 SMUtime의 차이점
 
 # 최종 프로젝트 링크
