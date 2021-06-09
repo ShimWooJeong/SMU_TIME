@@ -17,9 +17,9 @@
 
 # 기능 구현
 
-  ## -회원가입/로그인
+  ## - 회원가입/로그인
   
-  ## -메인화면
+  ## - 메인화면
   
   메인화면의 주요기능은 페이지 이동이다. 
   Fragment를 이용하여 bottomNavi를 제작하여 구성하려고 하였으나 4번째 화면을 수업시간에 배운 내용을 응용하여 CardView로 교통부분의 페이지를 구성하였는데,
@@ -36,7 +36,7 @@
   
   ![image](https://user-images.githubusercontent.com/80017979/121243561-cd6e9680-c8d8-11eb-86f9-ce3690db2da7.png)
   
-  ## -게시판(심우정)
+  ## - 게시판 (심우정)
   
     - 게시판의 세부 기능
     1.게시글 작성, 불러오기
@@ -136,16 +136,16 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 <img width="300px" height="400px" alt="image" src="https://user-images.githubusercontent.com/70475213/121225654-b32abd80-c8c4-11eb-8239-d1f47a9cd7a2.png"><br/>
 **(RealtimeDatabase의 Like(좋아요)테이블, 이 상태에서 2번 글의 좋아요를 누르면 2번 글의 like_count가 1이 되고, 1번 글의 좋아요를 취소하면 1번 글의 like_count가 0이 된다.)**<br/><br/>
   
-  ## -시간표 / 일정 추천
+  ## - 시간표 / 일정 추천 (박윤빈)
   
-    > ### 1. AutoResizeTextView.class
+  > ### 1. AutoResizeTextView.class
   
   테이블 안에 칸 하나의 크기의 가로 축과 세로 축 크기를 맞추기 위해서 자동 조절이 가능한 기능을 추가하였다. 가로축 및 세로축을 균일하게 조정하기 위해서 AUTO_SIZE_TEXT_TYPE_UNIFORM을 지정했다. 
   
   ![1](https://user-images.githubusercontent.com/79950206/121289754-6f65a180-c920-11eb-9c18-aeb5ede8005e.jpg)
   ![3](https://user-images.githubusercontent.com/79950206/121289768-74c2ec00-c920-11eb-8761-998158c64dd7.jpg)
   
-      > ### 2. Course.class
+  > ### 2. Course.class
   
   상명대학교 강의를 불러오기 위해서 학교 홈페이지에 있는 강의를 불러와 내가 필요한 정보를 속성 courseID	courseYear	courseTerm	courseArea	courseMajor	courseGrade	courseTitle	courseCredit	courseDivide	courseProfessor	courseTime 으로 지정하고 정렬했다. 2번째 사진은 이렇게 정리한 csv 파일을 json 파일로 전환시켰다. json 파일을 통해서 안드로이드 스튜디오에서 불러오기 위해서이다. 3번째는 내가 만든 속성에 getter setter 메소드를 추가한 class이다.
 
@@ -153,26 +153,26 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   ![image](https://user-images.githubusercontent.com/79950206/121291384-282ce000-c923-11eb-83a7-88f37b60af30.png)
   ![6](https://user-images.githubusercontent.com/79950206/121290874-51993c00-c922-11eb-99af-ced3e1d16309.jpg)
 
-      > ### 3. CourseActivity.class
+  > ### 3. CourseActivity.class
   
   CourseActivity에는 년도, 학기, 전공/교양, 학과를 yearSpinner, termSpinner, areaSpinner, majorSpinner로 설정해 Spinner로 구성하였다. arrays에 각각의 Spinner에 들어가서 보여질 정보를 입력해두었고 Spinner를 누르면 내가 arrays에 넣어둔 정보를 선택해 클릭할 수 있다. 4개의 Spinner 중 하나라도 선택되지 않으면 정보를 볼 수 없도록 각각의 Spinner가 선택되지 않았을 때 "해당 년도를 입력하세요.", "해당 학기를 입력하세요.", "전공을 입력하세요.", "학과를 입력하세요." 와 같은 문구가 밑부분에 떴다가 사라지도록 설정하였다. 
   
   ![7](https://user-images.githubusercontent.com/79950206/121293089-02eda100-c926-11eb-8200-0dab883385e6.jpg)
   ![8](https://user-images.githubusercontent.com/79950206/121293172-257fba00-c926-11eb-84ba-677f7f0f1a1e.jpg)
   
-      > ### 4. TimetableActivity.class
+  > ### 4. TimetableActivity.class
   
   TimetableActivity는 MainActivity와 같은 역할이다. 각각의 프로젝트를 합치는 과정에서 같은 이름의 Activity가 겹치는 것을 막기 위해서 TimetableActivity로 이름을 바꾸어 작업하였다. TimetableActivity에 버튼 3개를 두어 scheduleButton을 누르면 시간표 activity로 이동하고, courseButton을 누르면 강의 목록을 볼 수 있는 activity로, calendarButton을 누르면 달력을 볼 수 있는 페이지로 이동하도록 설정하였다. calendar가 보이는 화면은 activity가 아니라 fragment를 이용해서 구현했기 때문에 activity와는 다르게 FragmentManager fragmentManager = getSupportFragmentManager(); / FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction(); / fragmentTransaction.replace(R.id.container, new CalendarFragment()); / fragmentTransaction.commit(); 구현하였다.
   
   ![image](https://user-images.githubusercontent.com/79950206/121294031-a8eddb00-c927-11eb-9712-5c3029e7c7d0.png)
   
-      > ### 5. CalendarFragment.class
+  > ### 5. CalendarFragment.class
   이 부분은 일정 추천부분이다. 원래 구현하고자 했던 일정 추천은 팀플과 같은 여러 사람이 시간을 맞춰야 하는 모임에서 각자의 시간표에 비어있는 시간대에 일정을 추천해주는 기능이었다. 하지만 강의 목록에서 강의도 제대로 불러오지 못하는 과정에서 원래의 일정 추천을 실행하는 것이 무리라고 생각되어 캘린더를 띄우고 원하는 날짜로 이동해 오늘 할 일을 적어 저장해두는 To-Do List 역할을 하도록 변경하였다. 캘린더는 안드로이드 스튜디오에서 제공되는 calendarView를 이용했다. 날짜가 변경될 때 이벤트를 받기 위한 리스너는 void setOnDateChangeListener(CalendarView.OnDateChangeListener listener) 이고 void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) 이 메소드를 이용해 선택된 날짜의 정보를 얻었다.
 
   ![10](https://user-images.githubusercontent.com/79950206/121300910-654c9e80-c932-11eb-92ad-9add3f15ba2e.jpg)
   ![11](https://user-images.githubusercontent.com/79950206/121300985-82816d00-c932-11eb-8f66-21a15a545067.jpg)
 
-  ## -채팅
+  ## - 채팅
   
   채팅의 주요기능은 실시간으로 대화를 할 수 있다는 것이다. 
   
@@ -188,7 +188,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   실시간으로 채팅을 주고받을 수 있으며 addChildEventListener를 이용하여 채팅을 주고받는 것을 구현하였다. 
   원래는 단체채팅을 가능하게 하는 것이 목표였지만 채팅을 하는 채팅방안에 2명 이상의 유저를 등록하는 것을 실패하여 결국 구현하지 못하였다
   
-  ## -셔틀버스시간표
+  ## - 셔틀버스시간표
   셔틀버스 시간표에서 가장 중요한 기능은 실시간 타이머를 구현하는 것이었다. 
   
   ![image](https://user-images.githubusercontent.com/80017979/121248102-fb0a0e80-c8dd-11eb-9388-2da9b62b0079.png)
@@ -207,7 +207,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 
 
   
-  ## -버스시간표
+  ## - 버스시간표
   
   1.RetrofitManager
   Retrofit은 안드로이드 애플리케이션에서 통신 기능에 사용하는 코드를 사용하기 쉽게 만들어 놓은 라이브러리이다.
@@ -263,7 +263,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 
 ![image](https://user-images.githubusercontent.com/80312446/121251836-44f4f380-c8e2-11eb-8fd8-0b99744ccdb5.png)
   
-  ## -택시 모집
+  ## - 택시 모집
   
   택시 모집은 택시의 출발장소, 도착장소, 탑승인원, 탑승시간을 입력하여 글을 작성하면 그 글을 통해서 같이 택시 탈 사람을 모집하는 기능이다. 택시 모집의 레이아웃은 recyclerview를 이용했다. 또한 게시글을 작성하면 firebase의 realtimedatabase에 정보를 저장하고 recyclerview에 게시글을 불러오게 된다. 
   
