@@ -36,10 +36,10 @@
     - User.java : 회원정보(이메일, 비밀번호, 닉네임)이 들어갈 DB
     - activity_register.xml : 회원가입 레이아웃 작성
 
-  #### activity_register.xml
-  <레이아웃 화면>
+  #### <activity_register.xml>
+  레이아웃 화면
   
-    ![image](https://user-images.githubusercontent.com/70474860/121327906-d437f080-c94e-11eb-8401-c463b6988f04.png)
+   ![image](https://user-images.githubusercontent.com/70474860/121327906-d437f080-c94e-11eb-8401-c463b6988f04.png)
 
   <코드>
     
