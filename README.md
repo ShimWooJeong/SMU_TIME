@@ -19,12 +19,6 @@
 
   ## -회원가입/로그인
   
-  > ### 1.회원가입
-  
-  
-  > ### 2.로그인
-  
-  
   ## -메인화면
   
   메인화면의 주요기능은 페이지 이동이다. 
@@ -142,8 +136,42 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 <img width="300px" height="400px" alt="image" src="https://user-images.githubusercontent.com/70475213/121225654-b32abd80-c8c4-11eb-8239-d1f47a9cd7a2.png"><br/>
 **(RealtimeDatabase의 Like(좋아요)테이블, 이 상태에서 2번 글의 좋아요를 누르면 2번 글의 like_count가 1이 되고, 1번 글의 좋아요를 취소하면 1번 글의 like_count가 0이 된다.)**<br/><br/>
   
-  ## -시간표
+  ## -시간표 / 일정 추천
   
+    > ### 1. AutoResizeTextView.class
+  
+  테이블 안에 칸 하나의 크기의 가로 축과 세로 축 크기를 맞추기 위해서 자동 조절이 가능한 기능을 추가하였다. 가로축 및 세로축을 균일하게 조정하기 위해서 AUTO_SIZE_TEXT_TYPE_UNIFORM을 지정했다. 
+  
+  ![1](https://user-images.githubusercontent.com/79950206/121289754-6f65a180-c920-11eb-9c18-aeb5ede8005e.jpg)
+  ![3](https://user-images.githubusercontent.com/79950206/121289768-74c2ec00-c920-11eb-8761-998158c64dd7.jpg)
+  
+      > ### 2. Course.class
+  
+  상명대학교 강의를 불러오기 위해서 학교 홈페이지에 있는 강의를 불러와 내가 필요한 정보를 속성 courseID	courseYear	courseTerm	courseArea	courseMajor	courseGrade	courseTitle	courseCredit	courseDivide	courseProfessor	courseTime 으로 지정하고 정렬했다. 2번째 사진은 이렇게 정리한 csv 파일을 json 파일로 전환시켰다. json 파일을 통해서 안드로이드 스튜디오에서 불러오기 위해서이다. 3번째는 내가 만든 속성에 getter setter 메소드를 추가한 class이다.
+
+  ![image](https://user-images.githubusercontent.com/79950206/121291347-1a775a80-c923-11eb-931d-1cd74c777d4c.png)
+  ![image](https://user-images.githubusercontent.com/79950206/121291384-282ce000-c923-11eb-83a7-88f37b60af30.png)
+  ![6](https://user-images.githubusercontent.com/79950206/121290874-51993c00-c922-11eb-99af-ced3e1d16309.jpg)
+
+      > ### 3. CourseActivity.class
+  
+  CourseActivity에는 년도, 학기, 전공/교양, 학과를 yearSpinner, termSpinner, areaSpinner, majorSpinner로 설정해 Spinner로 구성하였다. arrays에 각각의 Spinner에 들어가서 보여질 정보를 입력해두었고 Spinner를 누르면 내가 arrays에 넣어둔 정보를 선택해 클릭할 수 있다. 4개의 Spinner 중 하나라도 선택되지 않으면 정보를 볼 수 없도록 각각의 Spinner가 선택되지 않았을 때 "해당 년도를 입력하세요.", "해당 학기를 입력하세요.", "전공을 입력하세요.", "학과를 입력하세요." 와 같은 문구가 밑부분에 떴다가 사라지도록 설정하였다. 
+  
+  ![7](https://user-images.githubusercontent.com/79950206/121293089-02eda100-c926-11eb-8200-0dab883385e6.jpg)
+  ![8](https://user-images.githubusercontent.com/79950206/121293172-257fba00-c926-11eb-84ba-677f7f0f1a1e.jpg)
+  
+      > ### 4. TimetableActivity.class
+  
+  TimetableActivity는 MainActivity와 같은 역할이다. 각각의 프로젝트를 합치는 과정에서 같은 이름의 Activity가 겹치는 것을 막기 위해서 TimetableActivity로 이름을 바꾸어 작업하였다. TimetableActivity에 버튼 3개를 두어 scheduleButton을 누르면 시간표 activity로 이동하고, courseButton을 누르면 강의 목록을 볼 수 있는 activity로, calendarButton을 누르면 달력을 볼 수 있는 페이지로 이동하도록 설정하였다. calendar가 보이는 화면은 activity가 아니라 fragment를 이용해서 구현했기 때문에 activity와는 다르게 FragmentManager fragmentManager = getSupportFragmentManager(); / FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction(); / fragmentTransaction.replace(R.id.container, new CalendarFragment()); / fragmentTransaction.commit(); 구현하였다.
+  
+  ![image](https://user-images.githubusercontent.com/79950206/121294031-a8eddb00-c927-11eb-9712-5c3029e7c7d0.png)
+  
+      > ### 5. CalendarFragment.class
+  이 부분은 일정 추천부분이다. 원래 구현하고자 했던 일정 추천은 팀플과 같은 여러 사람이 시간을 맞춰야 하는 모임에서 각자의 시간표에 비어있는 시간대에 일정을 추천해주는 기능이었다. 하지만 강의 목록에서 강의도 제대로 불러오지 못하는 과정에서 원래의 일정 추천을 실행하는 것이 무리라고 생각되어 캘린더를 띄우고 원하는 날짜로 이동해 오늘 할 일을 적어 저장해두는 To-Do List 역할을 하도록 변경하였다. 캘린더는 안드로이드 스튜디오에서 제공되는 calendarView를 이용했다. 날짜가 변경될 때 이벤트를 받기 위한 리스너는 void setOnDateChangeListener(CalendarView.OnDateChangeListener listener) 이고 void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) 이 메소드를 이용해 선택된 날짜의 정보를 얻었다.
+
+  ![10](https://user-images.githubusercontent.com/79950206/121300910-654c9e80-c932-11eb-92ad-9add3f15ba2e.jpg)
+  ![11](https://user-images.githubusercontent.com/79950206/121300985-82816d00-c932-11eb-8f66-21a15a545067.jpg)
+
   ## -채팅
   
   채팅의 주요기능은 실시간으로 대화를 할 수 있다는 것이다. 
@@ -248,14 +276,14 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   
   택시 장소를 입력할 때 카카오맵 api를 이용하여 지도를 띄우는 것은 성공했지만, 값을 받아오는 것은 구현하지 못했다.
   
-  ![image](https://user-images.githubusercontent.com/80017979/121277357-674f3700-c90b-11eb-8652-ac40267f618f.png)
+  ![image](https://user-images.githubusercontent.com/80017979/121277357-674f3700-c90b-11eb-8652-ac40267f618f.png
   ![image](https://user-images.githubusercontent.com/80017979/121277379-733af900-c90b-11eb-804c-72710920e9e6.png)
 
   이렇게 저장된 데이터는 다시 firebase에 연결하여 가져오게 된다. 이 과정에서 CustomAdapter를 이용하여 recyclerview에 item을 생성하여 게시판을 만들게 된다.
   
-  ![image](https://user-images.githubusercontent.com/80017979/121296242-4b5b8d80-c92b-11eb-8250-c46c34583acc.png)
+  ![image](https://user-images.githubusercontent.com/80017979/121277413-80f07e80-c90b-11eb-8ac6-d3d1679258b2.png)
   
-  또한 item마다 onClick을 연결하여 item이 클릭될 때 마다 인원이 1명씩 증가하고 현재 인원과 모집인원이 같아지게 되면 Toast를 통해 인원이 가득찼다는 메시지와 함께 더 이상 인원이 늘어나지 않도록 구현하였다. 클릭할때마다 사람 수 데이터를 업데이트 해주는 코드를 작성하려고 했는데 키값을 받아오는 것이 잘 안되서 새로 데이터를 집어넣는 형식으로 구현하였다.
+  또한 item마다 onClick을 연결하여 item이 클릭될 때 마다 인원이 1명씩 증가하고 현재 인원과 모집인원이 같아지게 되면 Toast를 통해 인원이 가득찼다는 메시지와 함께 더 이상 인원이 늘어나지 않도록 구현하였다.
 
 
 
