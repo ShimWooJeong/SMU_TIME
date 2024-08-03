@@ -17,11 +17,12 @@
 
 # 기능 구현
 
-  ## - 회원가입/로그인(마혜준)
+<details>
+    
+   <summary> - 회원가입/로그인(마혜준)</summary>
   
   회원가입과 로그인에서는 Firebase Authentication과 Firebase Realtime Database를 이용해 구현하였다.
-  
-   ### 1.회원가입
+  ### 1.회원가입
 
 회원가입의 주요 기능은 다음과 같다.
 
@@ -95,7 +96,7 @@ User에 담길 DB 설정.
 ![image](https://user-images.githubusercontent.com/70474860/121338439-78726500-c958-11eb-841f-2fa02f8c0f9c.png)
 #### Firebase Realtime Database에 입력한 내용(이메일, 닉네임, 비밀번호)이 저장된 모습
 
-  ### 2.로그인
+### 2.로그인
   
   로그인의 주요 기능은 다음과 같다.
 
@@ -172,8 +173,10 @@ OnClickListener 호출.
   ![image](https://user-images.githubusercontent.com/80022793/121352960-54b71b00-c968-11eb-9c0e-6661642770f0.png)
   
   ![image](https://user-images.githubusercontent.com/80017979/121243561-cd6e9680-c8d8-11eb-86f9-ce3690db2da7.png)
+  </details>
   
-  ## - 게시판(심우정)
+<details>
+  <summary> - 게시판(심우정)</summary>
   
     - 게시판의 세부 기능
     1.게시글 작성, 불러오기
@@ -272,8 +275,10 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
  
 <img width="300px" height="400px" alt="image" src="https://user-images.githubusercontent.com/70475213/121225654-b32abd80-c8c4-11eb-8239-d1f47a9cd7a2.png"><br/>
 **(RealtimeDatabase의 Like(좋아요)테이블, 이 상태에서 2번 글의 좋아요를 누르면 2번 글의 like_count가 1이 되고, 1번 글의 좋아요를 취소하면 1번 글의 like_count가 0이 된다.)**<br/><br/>
-  
-  ## - 시간표 / 일정 추천(박윤빈)
+  </details>
+
+<details>
+  <summary> - 시간표 / 일정 추천(박윤빈)</summary>
   
   > ### 1. AutoResizeTextView.class
   
@@ -308,8 +313,10 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 
   ![10](https://user-images.githubusercontent.com/79950206/121300910-654c9e80-c932-11eb-92ad-9add3f15ba2e.jpg)
   ![11](https://user-images.githubusercontent.com/79950206/121300985-82816d00-c932-11eb-8f66-21a15a545067.jpg)
+</details>
 
-  ## - 친구목록/채팅(양하은)
+<details>
+  <summary> - 친구목록/채팅(양하은)</summary>
   
   메인화면에서 친구목록 버튼을 눌러 이동하면 친구를 추가 할 수 있는 화면이 나온다. 그리고 목록에 추가된 친구를 누르면 해당 친구와의 채팅이 가능한 화면이 나온다
   
@@ -352,10 +359,10 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   레이아웃은 spinner를 이용해 선택된 아이템에 따라 텍스트를 변경할 수 있도록 구현하였다. 
   spinner와 아이템 값을 저장한 list를 연결한 후 setOnItemSelectedListener를 이용해 선택된 아이템에 따라 텍스트 뷰의 텍스트를 변경하고, 타이머를 실행시킨다. 
   초기에는 타이머를 시작하는 코드만 작성하였으나, 자꾸 두 개의 타이머가 충돌하는 문제가 발생하여 하나의 아이템을 선택하면 다른 아이템에 연결된 타이머를 정지시켜준 후에 선택된 타이머를 실행시키도록 구현하였다.
+</details>
 
-
-  
-  ## - 버스시간표(박승준)
+<details>
+  <summary> - 버스시간표(박승준)</summary>
   
   > ### 1. RetrofitManager
   Retrofit은 안드로이드 애플리케이션에서 통신 기능에 사용하는 코드를 사용하기 쉽게 만들어 놓은 라이브러리이다.
@@ -411,8 +418,11 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
   RecyclerView를 이용하여 데이터를 효율적으로 표시 할 수 있도록 한다.
 
 ![image](https://user-images.githubusercontent.com/80312446/121251836-44f4f380-c8e2-11eb-8fd8-0b99744ccdb5.png)
+
+  </details>
   
-  ## - 택시 모집(김다혜)
+<details>
+  <summary> - 택시 모집(김다혜)</summary>
   
   택시 모집은 택시의 출발장소, 도착장소, 탑승인원, 탑승시간을 입력하여 글을 작성하면 그 글을 통해서 같이 택시 탈 사람을 모집하는 기능이다. 택시 모집의 레이아웃은 recyclerview를 이용했다. 또한 게시글을 작성하면 firebase의 realtimedatabase에 정보를 저장하고 recyclerview에 게시글을 불러오게 된다. 
   
@@ -436,7 +446,7 @@ Ex) 게시글 목록에서 1번 글을 클릭해 1번 글에 대한 내용을 �
 
   
   또한 item마다 onClick을 연결하여 item이 클릭될 때 마다 인원이 1명씩 증가한다. 원래는 db에 있는 값을 수정해서 숫자를 늘리고 싶었지만 키값을 받아오는 것이 잘 해결되지 않아 새로 값을 추가하도록 구현하였다. 현재 인원과 모집인원이 같아지게 되면 Toast를 통해 인원이 가득찼다는 메시지와 함께 더 이상 인원이 늘어나지 않는다.
-
+</details>
   
 # SMUtime의 차별점
   
